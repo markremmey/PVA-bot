@@ -175,15 +175,17 @@
       }
 
       (async function main() {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, erroring);
-          } else {
-            alert("Geolocation is not supported by this browser.");
-          }
-          const store = WebChat.createStore({}, ({ dispatch }) => next => action => {
+          // if (navigator.geolocation) {
+          //   navigator.geolocation.getCurrentPosition(showPosition, erroring);
+          // } else {
+          //   alert("Geolocation is not supported by this browser.");
+          // }
+          const store = WebChat.createStore({}, ({ dispatch }) => next => action => 
+          {
           const { type } = action;
           
           // Triggers bot with initial message, in order to have greeting message render on load.
+          
           if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
             dispatch({
               type: 'WEB_CHAT/SEND_EVENT',
@@ -193,18 +195,18 @@
                 value: {text: "hello"}
               }
             });
-            dispatch({
-              type: 'WEB_CHAT/SEND_MESSAGE_BACK',
-              payload: {
-                text : locString
-              }
-            });
+            // dispatch({
+            //   type: 'WEB_CHAT/SEND_MESSAGE_BACK',
+            //   payload: {
+            //     text : ""
+            //   }
+            // });
             return next(action);
           // When Web Chat wants to send files, we intercept this action and send a message instead of an event with an attachment.
           } else if (type === 'WEB_CHAT/SEND_FILES') {
             (async function() {
               // Tells the bot that you are uploading files. This is optional.
-              dispatch({ type: 'WEB_CHAT/SEND_TYPING' });
+              // dispatch({ type: 'WEB_CHAT/SEND_TYPING' });
 
               const files = await Promise.all(action.payload.files.map(({ name, url }) => uploadFile({ name, url })));
 
