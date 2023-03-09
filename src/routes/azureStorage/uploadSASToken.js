@@ -18,13 +18,14 @@ module.exports = (_, res) => {
   // The other way is to use a proxied connection to Azure Storage, so you can control the size of the upload.
 
   const now = new Date();
-  const blobName = [
-    now.getUTCFullYear(),
-    pad(now.getUTCMonth() + 1),
-    pad(now.getUTCDate()),
-    pad(now.getUTCHours()),
-    uuidV4()
-  ].join('/');
+  const blobName =["ankitdesai@microsoft.com",uuidV4()].join('/');
+  //   [
+  //   now.getUTCFullYear(),
+  //   pad(now.getUTCMonth() + 1),
+  //   pad(now.getUTCDate()),
+  //   pad(now.getUTCHours()),
+  //   uuidV4()
+  // ].join('/');
   const permissions = new BlobSASPermissions();
 
   // We only allow create permissions, so the user cannot use the URL to redownload the file to redistribute it.
