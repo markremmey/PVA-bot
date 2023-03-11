@@ -2,7 +2,7 @@ require('dotenv').config();
 
 // Setting default environment variables.
 process.env = {
-  AZURE_STORAGE_CONTAINER_NAME: 'userupload',
+  AZURE_STORAGE_CONTAINER_NAME: 'source',
   PORT: '5000',
   STATIC_FILES: 'public',
   ...process.env
@@ -14,7 +14,8 @@ process.env = {
   'AZURE_STORAGE_ACCOUNT_NAME',
   'AZURE_STORAGE_CONTAINER_NAME',
   'BOT_ID',
-  'BOT_TENANT_ID'
+  'BOT_TENANT_ID',
+  'DIRECT_LINE_SECRET'
 ].forEach(name => {
   if (!process.env[name]) {
     throw new Error(`Environment variable ${name} must be set.`);
